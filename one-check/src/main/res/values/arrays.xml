@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="keyboard_key">
+        <item>Disable</item>
+        <item>Enable</item>
+    </string-array>
+
+    <string-array name="keyboard_value">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
+    <string-array name="effect_key">
+        <item>No Effect</item>
+        <item>Effect 1</item>
+    </string-array>
+
+    <string-array name="effect_value">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+</resources>

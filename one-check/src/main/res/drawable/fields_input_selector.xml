@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--<item android:state_enabled="true" android:state_window_focused="false">
+        <shape>
+            <solid android:color="@color/colorGray" />
+            <corners android:radius="2dp" />
+            &lt;!&ndash;<stroke android:width="2dp" android:color="#C9C9C9"/>&ndash;&gt;
+        </shape>
+    </item>
+    <item android:state_enabled="false" android:state_window_focused="false">
+        <shape>
+            <solid android:color="@color/colorGray" />
+            <corners android:radius="2dp" />
+            &lt;!&ndash;<stroke android:width="2dp" android:color="#C9C9C9"/>&ndash;&gt;
+        </shape>
+    </item>
+    <item android:state_enabled="true" android:state_focused="true">
+        <shape>
+            <solid android:color="@color/colorGray" />
+            <corners android:radius="2dp" />
+            &lt;!&ndash;<stroke android:width="2dp" android:color="#C9C9C9"/>&ndash;&gt;
+        </shape>
+    </item>
+    <item android:state_activated="true" android:state_enabled="true">
+        <shape>
+            <solid android:color="@color/colorGainsBoRo" />
+            <corners android:radius="2dp" />
+            &lt;!&ndash;<stroke android:width="2dp" android:color="#C9C9C9"/>&ndash;&gt;
+        </shape>
+    </item>-->
+    <item android:state_enabled="false">
+        <shape>
+            <solid android:color="#F5F5F5" />
+            <corners android:radius="@dimen/dm_16" />
+            <stroke android:width="2dp" android:color="#DCDCDC"/>
+        </shape>
+    </item>
+    <item android:state_focused="true">
+        <shape>
+            <!--<solid android:color="#FFC30B" />-->
+            <corners android:radius="@dimen/dm_16" />
+            <stroke android:width="2dp" android:color="#DCDCDC"/>
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <!--<solid android:color="#DCDCDC" />-->
+            <corners android:radius="@dimen/dm_16" />
+            <stroke android:width="2dp" android:color="#DCDCDC"/>
+        </shape>
+    </item>
+</selector>

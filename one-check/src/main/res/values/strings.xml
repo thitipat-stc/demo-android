@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">One Check</string>
+    <string name="txt_full_app_name">One Check</string>
+    <string name="txt_app_version_format">Version %1$s</string>
+    <string name="txt_ip_format">IP %1$s</string>
+    <string name="txt_developed_by_sato_auto_id_thailand">Developed by SATO Auto-ID (Thailand)</string>
+    <string name="txt_app_version_unset">Version 0&#46;0&#46;0</string>
+    <string name="txt_user_unset">User: …</string>
+    <string name="txt_user_format">User: %1$s</string>
+
+    <!--Settings-->
+    <string name="title_keyboard">Enable Keyboard</string>
+    <string name="title_effect">Choose Effect</string>
+
+    <string name="txt_key_keyboard">key_keyboard</string>
+    <string name="txt_key_effect">key_effect</string>
+    <!--Settings-->
+
+    <string name="txt_please_input_value">Please input value</string>
+
+    <string name="txt_title_completed">Completed</string>
+    <string name="txt_title_failure">Failure</string>
+    <string name="txt_title_warning">Warning</string>
+    <string name="txt_title_exception">Exception</string>
+
+    <string name="txt_settings">Settings</string>
+    <string name="txt_login">Login</string>
+    <string name="txt_password">Password</string>
+    <string name="txt_user">User</string>
+    <string name="txt_test">Test</string>
+    <string name="txt_scan_qr_connection">Scan QR Connection</string>
+    <string name="txt_ok">OK</string>
+    <string name="txt_slash">/</string>
+    <string name="txt_ng">NG</string>
+    <string name="txt_cancel">Cancel</string>
+    <string name="txt_scan_qr">Scan QR</string>
+    <string name="txt_title">Title</string>
+    <string name="txt_logout">Logout</string>
+    <string name="txt_password_incorrect">Password incorrect</string>
+    <string name="txt_loading">Loading…</string>
+    <string name="txt_scan_1">Scan 1</string>
+    <string name="txt_scan_2">Scan2</string>
+</resources>

@@ -1,0 +1,20 @@
+<resources>
+    <!--Text Size-->
+    <dimen name="text_large">20sp</dimen>
+    <dimen name="text_medium">16sp</dimen>
+    <dimen name="text_small">12sp</dimen>
+
+    <dimen name="dm_2">2dp</dimen>
+    <dimen name="dm_4">4dp</dimen>
+    <dimen name="dm_8">8dp</dimen>
+    <dimen name="dm_10">10dp</dimen>
+    <dimen name="dm_12">12dp</dimen>
+    <dimen name="dm_16">16dp</dimen>
+    <dimen name="dm_24">24dp</dimen>
+    <dimen name="dm_32">32dp</dimen>
+    <dimen name="dm_36">36dp</dimen>
+    <dimen name="dm_48">48dp</dimen>
+    <dimen name="dm_64">64dp</dimen>
+    <dimen name="dm_74">74dp</dimen>
+    <dimen name="dm_128">128dp</dimen>
+</resources>
