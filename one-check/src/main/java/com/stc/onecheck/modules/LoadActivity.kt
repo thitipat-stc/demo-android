@@ -1,15 +1,19 @@
 package com.stc.onecheck.modules
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.stc.onecheck.R
 import com.stc.onecheck.databinding.ActivityLoadBinding
 import com.stc.onecheck.utils.Shared
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -27,18 +31,20 @@ class LoadActivity : AppCompatActivity() {
         //binding.tvAppVersion.text = Shared.getAppVersion(this)
         binding.tvAppVersion.text = "Demo"
 
-        Handler(Looper.getMainLooper()).postDelayed({
+        /*Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
-        }, 1000)
+        }, 1000)*/
 
-        /*GlobalScope.launch(Dispatchers.Main) {
+        CoroutineScope(Dispatchers.Main).launch {
             try {
-                checkExpired()
+                Handler(Looper.getMainLooper()).postDelayed({
+                    checkExpired()
+                },300)
             } catch (t: Throwable) {
             }
-        }*/
+        }
     }
 
     private fun checkExpired() {val sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE)
@@ -69,7 +75,7 @@ class LoadActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }else{
-            if(count < 15){
+            if(count < 29){
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -79,7 +85,10 @@ class LoadActivity : AppCompatActivity() {
                 //builder.setMessage("If you want to continue to use. Please re-install")
                 builder.setCancelable(true)
                 builder.setPositiveButton(getString(R.string.txt_ok)) { dialog, id ->
-                    finish()
+                    //finish()
+                    val intent = Intent(Intent.ACTION_DELETE)
+                    intent.data = Uri.parse("package:com.stc.onecheck")
+                    startActivity(intent)
                 }
                 val alert = builder.create()
                 alert.setCanceledOnTouchOutside(false)

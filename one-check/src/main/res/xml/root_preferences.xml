@@ -4,6 +4,16 @@
     <PreferenceCategory android:layout="@layout/layout_preference_title">
 
         <ListPreference
+            android:entries="@array/master_key"
+            android:entryValues="@array/master_value"
+            android:layout="@layout/layout_preference_edt"
+            app:defaultValue="1"
+            app:icon="@drawable/ic_outline_text_snippet_24"
+            app:key="@string/txt_key_master"
+            app:title="@string/title_master"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
             android:entries="@array/keyboard_key"
             android:entryValues="@array/keyboard_value"
             android:layout="@layout/layout_preference_edt"

@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity(), View.OnKeyListener, View.OnClickListen
 
     private lateinit var binding: ActivityMainBinding
     private var mAnim: Animation? = null
+    private var keyMaster: Int = 0//1
     private var keyKeyboard: Int = 0
     private var keyEffect: Int = 0
     private var countOK: Int = 0
@@ -37,9 +38,10 @@ class MainActivity : AppCompatActivity(), View.OnKeyListener, View.OnClickListen
 
     override fun onResume() {
         super.onResume()
-        val settingPrefs = PreferenceManager.getDefaultSharedPreferences(this)
+        /*val settingPrefs = PreferenceManager.getDefaultSharedPreferences(this)
+        keyMaster = settingPrefs.getString(getString(R.string.txt_key_master), "1")?.toInt() ?: 1
         keyKeyboard = settingPrefs.getString(getString(R.string.txt_key_keyboard), "0")?.toInt() ?: 0
-        keyEffect = settingPrefs.getString(getString(R.string.txt_key_effect), "0")?.toInt() ?: 0
+        keyEffect = settingPrefs.getString(getString(R.string.txt_key_effect), "0")?.toInt() ?: 0*/
 
         if (keyKeyboard == 0) {
             binding.edtScan1.inputType = InputType.TYPE_NULL
@@ -169,33 +171,58 @@ class MainActivity : AppCompatActivity(), View.OnKeyListener, View.OnClickListen
     }
 
     private fun checkBox(value1: String) {
-        val rs = Mockup.getBox().filter { s -> s.boxId == value1 }.toList().size
-        if (rs <= 0) {
-            //Toast.makeText(this, "ไม่พบข้อมูลล่อง: $value1", Toast.LENGTH_LONG).show()
-            setTextResult(false, "Not found master: $value1")
-            binding.edtScan1.selectAll()
-            return
+        if (keyMaster == 1) {
+            val rs = Mockup.getBox().filter { s -> s.boxId == value1 }.toList().size
+            if (rs <= 0) {
+                setTextResult()
+                binding.edtScan2.text?.clear()
+                binding.tilScan2.error = ""
+                binding.tilScan2.isErrorEnabled = false
+
+                binding.tilScan1.error = "Not found master: $value1"
+                binding.tilScan1.isErrorEnabled = true
+                binding.edtScan1.selectAll()
+
+                clearEffect()
+                return
+            }
         }
         setTextResult()
         binding.edtScan2.requestFocus()
     }
 
     private fun compareValue(value1: String, value2: String) {
-        if (!value1.contentEquals(value2)) {
-            setTextResult(false, "Product incorrect")
-            binding.edtScan2.selectAll()
-            return
+        if (keyMaster == 1) {
+            val rs = Mockup.getBox().filter { s -> s.boxId == value1 && s.envelopeId == value2 }.toList().size
+            if (rs <= 0) {
+                setTextResult(false)
+                /*binding.tilScan2.error = "Product: $value2 incorrect"
+                binding.tilScan2.isErrorEnabled = true*/
+                binding.edtScan2.selectAll()
+                return
+            }
+            setTextResult(true)
+            binding.edtScan2.text?.clear()
+            binding.edtScan2.requestFocus()
+        } else {
+            if (!value1.contentEquals(value2)) {
+                setTextResult(false)
+                binding.tilScan2.error = "Product: $value2 incorrect"
+                binding.tilScan2.isErrorEnabled = true
+                binding.edtScan2.selectAll()
+                return
+            }
+            setTextResult(true)
+            binding.edtScan2.text?.clear()
+            binding.edtScan1.text?.clear()
+            binding.edtScan1.requestFocus()
         }
-
-        setTextResult(true)
-        binding.edtScan2.text?.clear()
-        binding.edtScan2.requestFocus()
-
     }
 
     private fun setTextResult(bool: Boolean? = null, msg: String? = null) {
         if (bool != null) {
             if (bool) {
+                Shared.soundAlert(this, Shared.SND.INFO, true)
                 binding.tvOK.setTextColor(ContextCompat.getColor(this, R.color.alert_success))
 
                 if (keyEffect == 1) {
@@ -211,6 +238,7 @@ class MainActivity : AppCompatActivity(), View.OnKeyListener, View.OnClickListen
                 countOK++
                 binding.tvOKCount.text = countOK.toString()
             } else {
+                Shared.soundAlert(this, Shared.SND.ERROR, true)
                 binding.tvNG.setTextColor(ContextCompat.getColor(this, R.color.alert_danger))
 
                 if (keyEffect == 1) {

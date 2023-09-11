@@ -12,21 +12,30 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
 
+        val prefMaster: ListPreference? = findPreference(getString(R.string.txt_key_master))
+        prefMaster?.setOnPreferenceChangeListener { preference, newValue ->
+            /*val index = prefMaster.findIndexOfValue(newValue.toString())
+            if (index != -1) {
+                println("MMMMM: ${prefMaster.entries[index]}")
+            }*/
+            true
+        }
+
         val prefKeyboard: ListPreference? = findPreference(getString(R.string.txt_key_keyboard))
         prefKeyboard?.setOnPreferenceChangeListener { preference, newValue ->
-            val index = prefKeyboard.findIndexOfValue(newValue.toString())
+            /*val index = prefKeyboard.findIndexOfValue(newValue.toString())
             if (index != -1) {
                 println("KKKKK: ${prefKeyboard.entries[index]}")
-            }
+            }*/
             true
         }
 
         val prefEffect: ListPreference? = findPreference(getString(R.string.txt_key_effect))
         prefEffect?.setOnPreferenceChangeListener { preference, newValue ->
-            val index = prefEffect.findIndexOfValue(newValue.toString())
+            /*val index = prefEffect.findIndexOfValue(newValue.toString())
             if (index != -1) {
                 println("EEEEE: ${prefEffect.entries[index]}")
-            }
+            }*/
             true
         }
 

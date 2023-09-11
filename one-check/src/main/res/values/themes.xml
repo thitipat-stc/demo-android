@@ -12,7 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <item name="fontFamily">@font/open_sans</item>
+        <!--<item name="fontFamily">@font/barlow</item>-->
         <item name="alertDialogTheme">@style/AppTheme.AlertDialogTheme</item>
 
     </style>
@@ -183,7 +183,7 @@
 
     <!--CardView-->
     <style name="CardViewPrimary" parent="CardView">
-        <item name="cardCornerRadius">@dimen/dm_16</item>
+        <item name="cardCornerRadius">@dimen/dm_8</item>
         <item name="cardElevation">@dimen/dm_4</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>

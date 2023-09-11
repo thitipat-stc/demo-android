@@ -9,9 +9,11 @@
     <string name="txt_user_format">User: %1$s</string>
 
     <!--Settings-->
+    <string name="title_master">Master</string>
     <string name="title_keyboard">Enable Keyboard</string>
     <string name="title_effect">Choose Effect</string>
 
+    <string name="txt_key_master">key_master</string>
     <string name="txt_key_keyboard">key_keyboard</string>
     <string name="txt_key_effect">key_effect</string>
     <!--Settings-->

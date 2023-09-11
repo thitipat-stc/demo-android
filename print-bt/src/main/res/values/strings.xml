@@ -1,3 +1,26 @@
 <resources>
-    <string name="app_name">print-bt</string>
+    <string name="app_name">Scan Print</string>
+    <string name="txt_full_app_name">Scan Print</string>
+    <string name="txt_app_version_format">Version %1$s</string>
+    <string name="txt_ip_format">IP %1$s</string>
+    <string name="txt_developed_by_sato_auto_id_thailand">Developed by SATO Auto-ID (Thailand)</string>
+    <string name="txt_app_version_unset">Version 0&#46;0&#46;0</string>
+    <string name="txt_user_unset">User: …</string>
+    <string name="txt_user_format">User: %1$s</string>
+
+    <string name="txt_please_input_value">Please input value</string>
+
+    <string name="txt_loading">Loading…</string>
+    <string name="txt_cancel">Cancel</string>
+    <string name="txt_ok">OK</string>
+    <string name="txt_clear">Clear</string>
+    <string name="txt_scan_barcode">Scan Barcode</string>
+    <string name="txt_list_scan">List Scan</string>
+    <string name="txt_no_recent_data">No Recent Data</string>
+    <string name="txt_print">Print</string>
+    <string name="txt_select_printer">Select Printer</string>
+    <string name="txt_disconnect">Disconnect</string>
+    <string name="txt_printer_setting">Printer Setting</string>
+    <string name="txt_printer_address">Printer Address</string>
+
 </resources>

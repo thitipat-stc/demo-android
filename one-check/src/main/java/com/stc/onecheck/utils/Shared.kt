@@ -3,7 +3,13 @@ package com.stc.onecheck.utils
 import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
+import android.media.MediaPlayer
 import android.net.wifi.WifiManager
+import android.os.Build
+import android.os.Handler
+import android.os.Looper
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -124,6 +130,28 @@ class Shared {
             val alertDialog = builder.create()
             alertDialog.show()
         }
+
+        fun soundAlert(context: Context, snd: SND, isVibrate: Boolean = true) {
+            val mp = when (snd) {
+                SND.ERROR -> MediaPlayer.create(context, R.raw.sound)
+                SND.INFO -> MediaPlayer.create(context, R.raw.success)
+            }
+            if(mp.isPlaying){
+                mp.stop()
+                Handler(Looper.getMainLooper()).postDelayed({
+                    mp.start()
+                },100)
+            }else{
+                mp.start()
+            }
+            val v = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                if (isVibrate) v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE))
+            } else {
+                //deprecated in API 26
+                if (isVibrate) v.vibrate(500)
+            }
+        }
     }
 
     enum class Alert {
@@ -132,5 +160,10 @@ class Shared {
         SUCCESS,
         CONFIRM,
         INFORMATION
+    }
+
+    enum class SND {
+        ERROR,
+        INFO
     }
 }

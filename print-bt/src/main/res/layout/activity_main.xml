@@ -1,18 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ic_liquid_cheese"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dm_32"
+        android:layout_marginTop="@dimen/dm_36"
+        android:layout_marginEnd="@dimen/dm_32"
+        android:layout_marginBottom="@dimen/dm_16"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="bottom"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvTitle"
+                    style="@style/TextMedium.Bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_full_app_name"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tvAppVersion"
+                    style="@style/TextSmall.Red.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dm_8"
+                    android:layout_weight="1"
+                    android:text="@string/txt_app_version_unset" />
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/TextSmall.Gray.Bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_developed_by_sato_auto_id_thailand" />
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSettings"
+            style="?attr/materialIconButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/ic_baseline_settings_24" />
+
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilScan1"
+        style="@style/Widget.App.TextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dm_32"
+        android:layout_marginTop="@dimen/dm_16"
+        android:layout_marginEnd="@dimen/dm_32"
+        android:layout_marginBottom="@dimen/dm_16"
+        android:hint="@string/txt_scan_barcode"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/fields_stroke_selector"
+        app:startIconDrawable="@drawable/ic_baseline_qr_code_scanner_24"
+        app:startIconTint="@color/fields_stroke_selector">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtScan1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:selectAllOnFocus="true" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <TextView
+        style="@style/TextSmall.Gray.Bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginBottom="@dimen/dm_8"
+        android:text="@string/txt_list_scan"
+        android:textStyle="bold" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fadingEdgeLength="48dp"
+        android:overScrollMode="never"
+        android:requiresFadingEdge="vertical"
+        tools:listitem="@layout/item" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnClear"
+            style="?attr/materialIconButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dm_32"
+            android:layout_marginTop="@dimen/dm_16"
+            android:layout_marginBottom="@dimen/dm_24"
+            android:layout_weight="1"
+            android:text="@string/txt_clear" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_print"
+            style="?attr/materialIconButtonFilledStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dm_16"
+            android:layout_marginEnd="@dimen/dm_32"
+            android:layout_marginBottom="@dimen/dm_24"
+            android:layout_weight="1"
+            android:text="@string/txt_print" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
