@@ -58,13 +58,13 @@
 
         </LinearLayout>
 
-        <com.google.android.material.button.MaterialButton
+        <ImageButton
             android:id="@+id/btnSettings"
-            style="?attr/materialIconButtonOutlinedStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:icon="@drawable/ic_baseline_settings_24" />
+            android:visibility="visible"
+            android:background="@null"
+            android:src="@drawable/ic_baseline_settings_24" />
 
     </LinearLayout>
 
