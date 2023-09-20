@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/ic_liquid_cheese"
     android:orientation="vertical"
-    tools:context=".PrintActivity">
+    tools:context=".print.PrintActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
