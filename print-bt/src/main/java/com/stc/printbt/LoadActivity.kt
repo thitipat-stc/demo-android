@@ -27,30 +27,31 @@ class LoadActivity : AppCompatActivity() {
         binding = ActivityLoadBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //binding.tvAppVersion.text = Shared.getAppVersion(this)
-        binding.tvAppVersion.text = "Demo"
+        //binding.tvAppVersion.text = Shared.getAppVersion(this)z
+        binding.tvAppVersion.text = getString(R.string.txt_demo)
 
-        /*Handler(Looper.getMainLooper()).postDelayed({
+        Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
-        }, 1000)*/
+        }, 1000)
 
-        CoroutineScope(Dispatchers.Main).launch {
+        /*CoroutineScope(Dispatchers.Main).launch {
             try {
                 Handler(Looper.getMainLooper()).postDelayed({
                     checkExpired()
                 },300)
             } catch (t: Throwable) {
             }
-        }
+        }*/
     }
 
-    private fun checkExpired() {val sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE)
+    private fun checkExpired() {
+        val sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE)
         val saved = sharedPreferences.getBoolean("saved", false)
         val dateFirst = sharedPreferences.getString("dateFirst", "")
 
-        Log.d(LoadActivity::class.simpleName,"Date saved: $dateFirst")
+        Log.d(LoadActivity::class.simpleName, "Date saved: $dateFirst")
 
         var count = 0
         val myFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
@@ -59,12 +60,12 @@ class LoadActivity : AppCompatActivity() {
             val date2 = myFormat.parse(Shared.getDateNow())
             val diff = date2.time - date1.time
             count = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS).toInt()
-            Log.d(LoadActivity::class.simpleName,"count: $count")
+            Log.d(LoadActivity::class.simpleName, "count: $count")
         } catch (e: ParseException) {
             e.printStackTrace()
         }
 
-        if(!saved){
+        if (!saved) {
             val myEdit = sharedPreferences.edit()
             myEdit.putBoolean("saved", true)
             myEdit.putString("dateFirst", Shared.getDateNow())
@@ -73,12 +74,12 @@ class LoadActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
-        }else{
-            if(count < 29){
+        } else {
+            if (count < 29) {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
-            }else{
+            } else {
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle("Trial has expired")
                 //builder.setMessage("If you want to continue to use. Please re-install")

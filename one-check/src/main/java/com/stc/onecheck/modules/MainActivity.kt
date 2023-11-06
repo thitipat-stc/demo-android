@@ -17,8 +17,8 @@ import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
 import com.stc.onecheck.R
 import com.stc.onecheck.databinding.ActivityMainBinding
-import com.stc.onecheck.utils.Mockup
 import com.stc.onecheck.utils.Shared
+import com.thitipat.printerservice.PrinterService
 
 class MainActivity : AppCompatActivity(), View.OnKeyListener, View.OnClickListener {
 
@@ -38,10 +38,13 @@ class MainActivity : AppCompatActivity(), View.OnKeyListener, View.OnClickListen
 
     override fun onResume() {
         super.onResume()
-        /*val settingPrefs = PreferenceManager.getDefaultSharedPreferences(this)
+
+        clearActivity()
+
+        val settingPrefs = PreferenceManager.getDefaultSharedPreferences(this)
         keyMaster = settingPrefs.getString(getString(R.string.txt_key_master), "1")?.toInt() ?: 1
         keyKeyboard = settingPrefs.getString(getString(R.string.txt_key_keyboard), "0")?.toInt() ?: 0
-        keyEffect = settingPrefs.getString(getString(R.string.txt_key_effect), "0")?.toInt() ?: 0*/
+        keyEffect = settingPrefs.getString(getString(R.string.txt_key_effect), "0")?.toInt() ?: 0
 
         if (keyKeyboard == 0) {
             binding.edtScan1.inputType = InputType.TYPE_NULL
@@ -86,7 +89,7 @@ class MainActivity : AppCompatActivity(), View.OnKeyListener, View.OnClickListen
 
     override fun onKey(v: View?, keyCode: Int, event: KeyEvent?): Boolean {
         when (v?.id) {
-            R.id.edtScan1 -> {
+            R.id.edt_scan_1 -> {
                 if (keyCode == KeyEvent.KEYCODE_ENTER && event?.action == KeyEvent.ACTION_UP) {
                     val value1 = binding.edtScan1.text.toString()
                     when {
@@ -104,7 +107,7 @@ class MainActivity : AppCompatActivity(), View.OnKeyListener, View.OnClickListen
                 }
             }
 
-            R.id.edtScan2 -> {
+            R.id.edt_scan_2 -> {
                 if (keyCode == KeyEvent.KEYCODE_ENTER && event?.action == KeyEvent.ACTION_UP) {
                     val value1 = binding.edtScan1.text.toString()
                     val value2 = binding.edtScan2.text.toString()
@@ -137,11 +140,11 @@ class MainActivity : AppCompatActivity(), View.OnKeyListener, View.OnClickListen
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.btnClear -> {
+            R.id.btn_clear -> {
                 clearActivity()
             }
 
-            R.id.btnSettings -> {
+            R.id.btn_settings -> {
                 val intent = Intent(this, SettingsActivity::class.java)
                 startActivity(intent)
             }
@@ -158,8 +161,8 @@ class MainActivity : AppCompatActivity(), View.OnKeyListener, View.OnClickListen
             edtScan1.text?.clear()
             edtScan2.text?.clear()
 
-            tvOKCount.text = "0"
-            tvNGCount.text = "0"
+            tvOkCount.text = "0"
+            tvNgCount.text = "0"
 
             countOK = 0
             countNG = 0
@@ -171,7 +174,7 @@ class MainActivity : AppCompatActivity(), View.OnKeyListener, View.OnClickListen
     }
 
     private fun checkBox(value1: String) {
-        if (keyMaster == 1) {
+        /*if (keyMaster == 1) {
             val rs = Mockup.getBox().filter { s -> s.boxId == value1 }.toList().size
             if (rs <= 0) {
                 setTextResult()
@@ -186,18 +189,25 @@ class MainActivity : AppCompatActivity(), View.OnKeyListener, View.OnClickListen
                 clearEffect()
                 return
             }
-        }
+        }*/
         setTextResult()
         binding.edtScan2.requestFocus()
     }
 
     private fun compareValue(value1: String, value2: String) {
         if (keyMaster == 1) {
-            val rs = Mockup.getBox().filter { s -> s.boxId == value1 && s.envelopeId == value2 }.toList().size
+            /*val rs = Mockup.getBox().filter { s -> s.boxId == value1 && s.envelopeId == value2 }.toList().size
             if (rs <= 0) {
                 setTextResult(false)
-                /*binding.tilScan2.error = "Product: $value2 incorrect"
-                binding.tilScan2.isErrorEnabled = true*/
+                *//*binding.tilScan2.error = "Product: $value2 incorrect"
+                binding.tilScan2.isErrorEnabled = true*//*
+                binding.edtScan2.selectAll()
+                return
+            }*/
+            if (!value1.contentEquals(value2)) {
+                setTextResult(false)
+                binding.tilScan2.error = "Product: $value2 incorrect"
+                binding.tilScan2.isErrorEnabled = true
                 binding.edtScan2.selectAll()
                 return
             }
@@ -223,40 +233,40 @@ class MainActivity : AppCompatActivity(), View.OnKeyListener, View.OnClickListen
         if (bool != null) {
             if (bool) {
                 Shared.soundAlert(this, Shared.SND.INFO, true)
-                binding.tvOK.setTextColor(ContextCompat.getColor(this, R.color.alert_success))
+                binding.tvOk.setTextColor(ContextCompat.getColor(this, R.color.alert_success))
 
                 if (keyEffect == 1) {
-                    if (binding.tvOK.textSize == 128f && binding.tvNG.textSize == 128f) {
-                        setFullText(binding.tvNG, T_MEDIUM, T_SMALL)
-                        setFullText(binding.tvOK, T_MEDIUM, T_LARGE)
-                    } else if (binding.tvOK.textSize == 48f && binding.tvNG.textSize == 256f) {
-                        setFullText(binding.tvOK, T_SMALL, T_LARGE)
-                        setFullText(binding.tvNG, T_LARGE, T_SMALL)
+                    if (binding.tvOk.textSize == 128f && binding.tvNg.textSize == 128f) {
+                        setFullText(binding.tvNg, T_MEDIUM, T_SMALL)
+                        setFullText(binding.tvOk, T_MEDIUM, T_LARGE)
+                    } else if (binding.tvOk.textSize == 48f && binding.tvNg.textSize == 256f) {
+                        setFullText(binding.tvOk, T_SMALL, T_LARGE)
+                        setFullText(binding.tvNg, T_LARGE, T_SMALL)
                     }
                 }
 
                 countOK++
-                binding.tvOKCount.text = countOK.toString()
+                binding.tvOkCount.text = countOK.toString()
             } else {
                 Shared.soundAlert(this, Shared.SND.ERROR, true)
-                binding.tvNG.setTextColor(ContextCompat.getColor(this, R.color.alert_danger))
+                binding.tvNg.setTextColor(ContextCompat.getColor(this, R.color.alert_danger))
 
                 if (keyEffect == 1) {
-                    if (binding.tvOK.textSize == 128f && binding.tvNG.textSize == 128f) {
-                        setFullText(binding.tvOK, T_MEDIUM, T_SMALL)
-                        setFullText(binding.tvNG, T_MEDIUM, T_LARGE)
-                    } else if (binding.tvOK.textSize == 256f && binding.tvNG.textSize == 48f) {
-                        setFullText(binding.tvNG, T_SMALL, T_LARGE)
-                        setFullText(binding.tvOK, T_LARGE, T_SMALL)
+                    if (binding.tvOk.textSize == 128f && binding.tvNg.textSize == 128f) {
+                        setFullText(binding.tvOk, T_MEDIUM, T_SMALL)
+                        setFullText(binding.tvNg, T_MEDIUM, T_LARGE)
+                    } else if (binding.tvOk.textSize == 256f && binding.tvNg.textSize == 48f) {
+                        setFullText(binding.tvNg, T_SMALL, T_LARGE)
+                        setFullText(binding.tvOk, T_LARGE, T_SMALL)
                     }
                 }
 
                 countNG++
-                binding.tvNGCount.text = countNG.toString()
+                binding.tvNgCount.text = countNG.toString()
             }
         } else {
-            binding.tvOK.setTextColor(ContextCompat.getColor(this, R.color.gainsboro))
-            binding.tvNG.setTextColor(ContextCompat.getColor(this, R.color.gainsboro))
+            binding.tvOk.setTextColor(ContextCompat.getColor(this, R.color.gainsboro))
+            binding.tvNg.setTextColor(ContextCompat.getColor(this, R.color.gainsboro))
         }
     }
 
@@ -287,14 +297,14 @@ class MainActivity : AppCompatActivity(), View.OnKeyListener, View.OnClickListen
     }
 
     private fun clearEffect() {
-        if (binding.tvOK.textSize == 256f && binding.tvNG.textSize == 48f) {
-            setFullText(binding.tvOK, T_LARGE, T_MEDIUM)
-            setFullText(binding.tvNG, T_SMALL, T_MEDIUM)
-        } else if (binding.tvOK.textSize == 48f && binding.tvNG.textSize == 256f) {
-            setFullText(binding.tvNG, T_LARGE, T_MEDIUM)
-            setFullText(binding.tvOK, T_SMALL, T_MEDIUM)
+        if (binding.tvOk.textSize == 256f && binding.tvNg.textSize == 48f) {
+            setFullText(binding.tvOk, T_LARGE, T_MEDIUM)
+            setFullText(binding.tvNg, T_SMALL, T_MEDIUM)
+        } else if (binding.tvOk.textSize == 48f && binding.tvNg.textSize == 256f) {
+            setFullText(binding.tvNg, T_LARGE, T_MEDIUM)
+            setFullText(binding.tvOk, T_SMALL, T_MEDIUM)
         }
-        binding.tvOK.setTextColor(ContextCompat.getColor(this, R.color.gainsboro))
-        binding.tvNG.setTextColor(ContextCompat.getColor(this, R.color.gainsboro))
+        binding.tvOk.setTextColor(ContextCompat.getColor(this, R.color.gainsboro))
+        binding.tvNg.setTextColor(ContextCompat.getColor(this, R.color.gainsboro))
     }
 }

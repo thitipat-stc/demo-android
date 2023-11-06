@@ -3,6 +3,8 @@ package com.stc.printbt.print
 import android.Manifest
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
+import android.bluetooth.BluetoothManager
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -15,13 +17,17 @@ import androidx.core.content.ContextCompat
 import com.stc.printbt.R
 import com.stc.printbt.databinding.ActivityPrintBinding
 import com.stc.printbt.models.PairedData
+import com.thitipat.printerservice.PrinterService
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class PrintActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPrintBinding
 
-    private var printerObject = PrinterObject()
+    private var printerService = PrinterService()
     private var pairedDevices: Set<BluetoothDevice>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,19 +70,18 @@ class PrintActivity : AppCompatActivity() {
             if (selectedItem.value != null) {
                 setBTStatus(false)
                 try {
-                    printerObject.setPrinter(selectedItem.value!!) //bluetoothDevice
-                    printerObject.connect()
+                    printerService.setPrinter(selectedItem.value!!) //bluetoothDevice
+                    printerService.connect()
+                    setBTStatus(true)
                 } catch (e: Exception) {
                     Toast.makeText(this, "${e.message}", Toast.LENGTH_SHORT).show()
-                } finally {
-                    if (printerObject.isStateConnected()) setBTStatus(true)
                 }
             }
         }
 
         binding.btnDisconnect.setOnClickListener {
             try {
-                printerObject.disconnect()
+                printerService.disconnect()
             } catch (e: Exception) {
                 Toast.makeText(this, "${e.message}", Toast.LENGTH_SHORT).show()
             } finally {
@@ -109,12 +114,13 @@ class PrintActivity : AppCompatActivity() {
                     "\u001BQ1\n" +
                     "\u001BZ"
             val detailBytes = barcode.toByteArray()
-            printerObject.sendCommandToPrint(detailBytes)
+            printerService.sendCommandToPrint(detailBytes)
         }
     }
 
     private fun printerList(): java.util.ArrayList<PairedData> {
-        val bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
+        val bluetoothManager = getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
+        val bluetoothAdapter = bluetoothManager.adapter
         pairedDevices = bluetoothAdapter.bondedDevices
         val list = java.util.ArrayList<PairedData>()
         //list.add(PairedData("Select Printer", null))

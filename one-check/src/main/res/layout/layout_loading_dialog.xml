@@ -14,7 +14,7 @@
         app:trackColor="@color/yellow" />
 
     <TextView
-        android:id="@+id/tvMessage"
+        android:id="@+id/tv_message"
         style="@style/TextMedium.Bold"
         android:layout_width="0dp"
         android:layout_height="match_parent"

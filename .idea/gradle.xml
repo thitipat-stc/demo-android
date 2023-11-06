@@ -7,12 +7,14 @@
         <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleJvm" value="Android Studio java home" />
+        <option name="gradleJvm" value="jbr-17" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/copy-label" />
             <option value="$PROJECT_DIR$/one-check" />
             <option value="$PROJECT_DIR$/print-bt" />
+            <option value="$PROJECT_DIR$/printerservice" />
           </set>
         </option>
       </GradleProjectSettings>

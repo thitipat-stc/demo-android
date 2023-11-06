@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_liquid_cheese"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dm_32"
+        android:layout_marginTop="@dimen/dm_36"
+        android:layout_marginEnd="@dimen/dm_32"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="bottom"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    style="@style/TextMedium.Bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_full_app_name"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tv_app_version"
+                    style="@style/TextSmall.Red.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dm_8"
+                    android:layout_weight="1"
+                    android:text="@string/txt_app_version_unset" />
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/TextSmall.Gray.Bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_developed_by_sato_auto_id_thailand" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dm_32"
+        android:layout_marginTop="@dimen/dm_32"
+        android:layout_marginEnd="@dimen/dm_32"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_printer_address"
+            style="@style/Widget.App.DropdownMenu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/txt_select_printer"
+            app:endIconTint="@color/selector_fields_stroke"
+            app:startIconDrawable="@drawable/ic_baseline_print_24"
+            app:startIconTint="@color/selector_fields_stroke">
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/spn_printer_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:lines="1"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/iv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:srcCompat="@drawable/ic_usb_disconnect" />
+
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_scan_1"
+        style="@style/Widget.App.TextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dm_32"
+        android:layout_marginTop="@dimen/dm_16"
+        android:layout_marginEnd="@dimen/dm_32"
+        android:hint="@string/txt_scan_barcode"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/selector_fields_stroke"
+        app:startIconDrawable="@drawable/ic_baseline_qr_code_scanner_24"
+        app:startIconTint="@color/selector_fields_stroke">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_scan_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:selectAllOnFocus="true" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dm_32"
+        android:layout_marginTop="@dimen/dm_32"
+        android:layout_marginEnd="@dimen/dm_32"
+        android:layout_marginBottom="@dimen/dm_16"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_disconnect"
+            style="?attr/materialIconButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:text="@string/txt_disconnect" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_print"
+            style="?attr/materialIconButtonFilledStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:text="@string/txt_print" />
+
+    </LinearLayout>
+</LinearLayout>

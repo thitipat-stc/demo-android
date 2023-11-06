@@ -47,7 +47,8 @@ class LoadActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkExpired() {val sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE)
+    private fun checkExpired() {
+        val sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE)
         val saved = sharedPreferences.getBoolean("saved", false)
         val dateFirst = sharedPreferences.getString("dateFirst", "")
 

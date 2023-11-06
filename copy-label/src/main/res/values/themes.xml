@@ -1,0 +1,349 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/accent</item>
+        <item name="colorSecondaryVariant">@color/accent_dark</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <!--<item name="fontFamily">@font/barlow</item>-->
+        <item name="alertDialogTheme">@style/AppTheme.AlertDialogTheme</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!--TextInputLayout-->
+    <style name="Widget.App.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <!--<item name="materialThemeOverlay">@style/ThemeOverlay.App.TextInputLayout</item>-->
+        <!--<item name="shapeAppearance">@style/ShapeAppearance.App.SmallComponent</item>-->
+        <item name="boxBackgroundColor">@color/selector_fields_input</item>
+        <!--<item name="boxBackgroundColor">@android:color/transparent</item>-->
+        <!--<item name="boxStrokeColor">@color/fields_stroke_selector</item>-->
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="hintTextColor">@color/gray</item>
+        <item name="android:textColorHint">@color/gray</item>
+        <item name="errorTextColor">@color/red</item>
+        <item name="helperTextTextColor">@color/orange</item>
+        <!--<item name="boxCornerRadiusBottomEnd">@dimen/dm_8</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/dm_8</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/dm_8</item>
+        <item name="boxCornerRadiusTopStart">@dimen/dm_8</item>-->
+    </style>
+
+    <style name="Widget.App.DropdownMenu" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu">
+        <!--<item name="materialThemeOverlay">@style/ThemeOverlay.App.TextInputLayout</item>-->
+        <!--<item name="shapeAppearance">@style/ShapeAppearance.App.SmallComponent</item>-->
+        <item name="boxBackgroundColor">@color/selector_fields_input</item>
+        <!--<item name="boxBackgroundColor">@android:color/transparent</item>-->
+        <!--<item name="boxStrokeColor">@color/fields_stroke_selector</item>-->
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="hintTextColor">@color/gray</item>
+        <item name="android:textColorHint">@color/gray</item>
+        <item name="errorTextColor">@color/red</item>
+        <item name="helperTextTextColor">@color/orange</item>
+        <!--<item name="boxCornerRadiusBottomEnd">@dimen/dm_8</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/dm_8</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/dm_8</item>
+        <item name="boxCornerRadiusTopStart">@dimen/dm_8</item>-->
+    </style>
+
+
+    <!--CircularProgressIndicator-->
+    <style name="AppTheme.CircularProgressIndicator" parent="Widget.Material3.CircularProgressIndicator.ExtraSmall">
+        <item name="trackColor">@color/yellow</item>
+        <item name="indicatorColor">@color/accent</item>
+    </style>
+
+
+    <!--AlertDialog-->
+    <style name="AppTheme.AlertDialogTheme" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="dialogCornerRadius">@dimen/dm_16</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/TitleTextStyle</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/BodyTextStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+        <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
+    </style>
+
+    <style name="TitleTextStyle" parent="MaterialAlertDialog.Material3.Title.Text">
+        <item name="android:textSize">@dimen/text_large</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="BodyTextStyle" parent="MaterialAlertDialog.Material3.Body.Text">
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="TitleTextStyle.White" parent="MaterialAlertDialog.Material3.Title.Text">
+        <item name="android:textSize">@dimen/text_large</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="BodyTextStyle.White" parent="MaterialAlertDialog.Material3.Body.Text">
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="TitleTextStyle.Red" parent="MaterialAlertDialog.Material3.Title.Text">
+        <item name="android:textSize">@dimen/text_large</item>
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="BodyTextStyle.Red" parent="MaterialAlertDialog.Material3.Body.Text">
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="TitleTextStyle.Green" parent="MaterialAlertDialog.Material3.Title.Text">
+        <item name="android:textSize">@dimen/text_large</item>
+        <item name="android:textColor">@color/green</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="BodyTextStyle.Green" parent="MaterialAlertDialog.Material3.Body.Text">
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:textColor">@color/green</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="TitleTextStyle.Yellow" parent="MaterialAlertDialog.Material3.Title.Text">
+        <item name="android:textSize">@dimen/text_large</item>
+        <item name="android:textColor">@color/yellow</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="BodyTextStyle.Yellow" parent="MaterialAlertDialog.Material3.Body.Text">
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:textColor">@color/green</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="PositiveButtonStyle" parent="Widget.Material3.Button.TextButton.Dialog">
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="backgroundTint">@color/primary</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="NegativeButtonStyle" parent="Widget.Material3.Button.TextButton.Dialog">
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="backgroundTint">@color/white_smoke</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+
+    <style name="DialogFail" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="dialogCornerRadius">@dimen/dm_16</item>
+        <!--<item name="android:background">@color/alert_danger</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/TitleTextStyle.Red</item>-->
+        <item name="materialAlertDialogBodyTextStyle">@style/BodyTextStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+        <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
+    </style>
+
+    <style name="DialogWarning" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="dialogCornerRadius">@dimen/dm_16</item>
+        <!--<item name="android:background">@color/alert_warning</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/TitleTextStyle.Yellow</item>-->
+        <item name="materialAlertDialogBodyTextStyle">@style/BodyTextStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+        <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
+    </style>
+
+    <style name="DialogSuccess" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="dialogCornerRadius">@dimen/dm_16</item>
+        <!--<item name="android:background">@color/alert_success</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/TitleTextStyle.Green</item>-->
+        <item name="materialAlertDialogBodyTextStyle">@style/BodyTextStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+        <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
+    </style>
+
+    <style name="DialogConfirm" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="dialogCornerRadius">@dimen/dm_16</item>
+        <!--<item name="android:background">@color/alert_light</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/TitleTextStyle</item>-->
+        <item name="materialAlertDialogBodyTextStyle">@style/BodyTextStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+        <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
+    </style>
+
+
+    <!--CardView-->
+    <style name="CardViewPrimary" parent="CardView">
+        <item name="cardCornerRadius">@dimen/dm_8</item>
+        <item name="cardElevation">@dimen/dm_4</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="cardBackgroundColor">@color/white</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+    </style>
+
+
+    <!--Button-->
+    <style name="ButtonPrimary" parent="@style/Widget.Material3.Button">
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:focusable">false</item>
+    </style>
+
+    <style name="ButtonSecondary">
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:textColor">@color/primary</item>
+        <item name="strokeColor">@color/primary</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="backgroundTint">@color/white_smoke</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:focusable">false</item>
+    </style>
+
+    <style name="ButtonSecondaryRed">
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="backgroundTint">@color/red</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:focusable">false</item>
+    </style>
+
+
+    <!--TextLarge-->
+    <style name="TextLarge" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">@dimen/text_large</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="TextLarge.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextLarge.White">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextLarge.White.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextLarge.Gray">
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="TextLarge.Gray.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextLarge.Gainsboro">
+        <item name="android:textColor">@color/gainsboro</item>
+    </style>
+
+    <style name="TextLarge.Gainsboro.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!--TextMedium-->
+    <style name="TextMedium" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="TextMedium.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextMedium.White">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextMedium.White.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextMedium.Gray">
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="TextMedium.Gray.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextMedium.Green">
+        <item name="android:textColor">@color/green</item>
+    </style>
+
+    <style name="TextMedium.Green.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextMedium.Red">
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+    <style name="TextMedium.Red.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextMedium.Orange">
+        <item name="android:textColor">@color/orange</item>
+    </style>
+
+    <!--TextSmall-->
+    <style name="TextSmall" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">@dimen/text_small</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="TextSmall.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextSmall.White">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextSmall.White.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextSmall.Gray">
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="TextSmall.Gray.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextSmall.Red">
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+    <style name="TextSmall.Red.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextSmall.Gainsboro">
+        <item name="android:textColor">@color/gainsboro</item>
+    </style>
+
+    <style name="TextSmall.Gainsboro.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>

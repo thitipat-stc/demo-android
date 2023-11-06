@@ -81,7 +81,7 @@
         android:layout_marginStart="@dimen/dm_32"
         android:layout_marginTop="@dimen/dm_32"
         android:layout_marginBottom="@dimen/dm_128"
-
+        android:enabled="false"
         android:text="@string/txt_disconnect"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btn_print"
@@ -97,6 +97,7 @@
         android:layout_marginTop="@dimen/dm_32"
         android:layout_marginEnd="@dimen/dm_32"
         android:layout_marginBottom="@dimen/dm_128"
+        android:enabled="false"
         android:text="@string/txt_print"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

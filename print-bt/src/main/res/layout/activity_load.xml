@@ -24,7 +24,7 @@
             android:src="@mipmap/ic_launcher" />
 
         <TextView
-            android:id="@+id/tvAppName"
+            android:id="@+id/tv_app_name"
             style="@style/TextLarge.Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
             android:textAlignment="center" />
 
         <TextView
-            android:id="@+id/tvAppVersion"
+            android:id="@+id/tv_app_version"
             style="@style/TextSmall.Red.Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
             android:textAlignment="center" />
 
         <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lavLoading"
+            android:id="@+id/lav_loading"
             android:layout_width="@dimen/dm_64"
             android:layout_height="@dimen/dm_64"
             android:layout_marginTop="@dimen/dm_48"
@@ -50,7 +50,7 @@
             app:lottie_rawRes="@raw/loading" />
 
         <TextView
-            android:id="@+id/tvLoading"
+            android:id="@+id/tv_loading"
             style="@style/TextMedium.Bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

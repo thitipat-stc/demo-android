@@ -70,4 +70,7 @@ dependencies {
     /*FluentUI*/
     implementation 'com.microsoft.fluentui:FluentUIAndroid:0.1.23'
     implementation "com.microsoft.device:dualscreen-layout:1.0.0-alpha01"
+
+    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+
 }

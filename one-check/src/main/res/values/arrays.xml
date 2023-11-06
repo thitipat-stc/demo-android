@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="master_key">
-        <item>No Master</item>
-        <item>Master</item>
+        <item>No Master (1:1)</item>
+        <item>Master (1:N)</item>
     </string-array>
 
     <string-array name="master_value">

@@ -23,5 +23,6 @@
     <string name="txt_printer_setting">Printer Setting</string>
     <string name="txt_printer_address">Printer Address</string>
     <string name="access_required">access_required</string>
+    <string name="txt_demo">Demo</string>
 
 </resources>

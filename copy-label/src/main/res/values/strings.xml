@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Copy Label</string>
+    <string name="txt_full_app_name">Copy Label</string>
+
+    <string name="txt_developed_by_sato_auto_id_thailand">Developed by SATO Auto-ID (Thailand)</string>
+    <string name="txt_app_version_unset">Version 0&#46;0&#46;0</string>
+
+    <string name="txt_please_scan_barcode">Please scan barcode</string>
+
+    <string name="txt_printer_setting">Printer Setting</string>
+    <string name="txt_printer_address">Printer Address</string>
+    <string name="txt_select_printer">Select Printer</string>
+    <string name="txt_print">Print</string>
+    <string name="txt_disconnect">Disconnect</string>
+    <string name="txt_demo">Demo</string>
+    <string name="txt_scan_barcode">Scan Barcode</string>
+    <string name="txt_loading">Loading…</string>
+</resources>
