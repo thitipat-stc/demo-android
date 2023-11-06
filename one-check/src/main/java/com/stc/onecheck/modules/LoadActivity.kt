@@ -11,9 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.stc.onecheck.R
 import com.stc.onecheck.databinding.ActivityLoadBinding
 import com.stc.onecheck.utils.Shared
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Locale
