@@ -10,6 +10,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "android-demo"
 include ':one-check'
-include ':print-bt'
+include ':scan-print'
 include ':copy-label'
 include ':printerservice'

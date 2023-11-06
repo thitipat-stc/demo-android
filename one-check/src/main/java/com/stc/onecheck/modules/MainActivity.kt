@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity(), View.OnKeyListener, View.OnClickListen
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.tvAppVersion.text = "Demo"
+        binding.tvAppVersion.text = getString(R.string.txt_demo)
 
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {

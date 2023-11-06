@@ -49,4 +49,5 @@ dependencies {
     implementation(project(mapOf("path" to ":printerservice")))
 
     implementation("com.airbnb.android:lottie:3.4.0")
+    implementation("com.github.techinessoverloaded:progress-dialog:1.5.1")
 }

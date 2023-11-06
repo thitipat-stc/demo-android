@@ -42,4 +42,5 @@
     <string name="txt_loading">Loading…</string>
     <string name="txt_scan_1">Scan 1</string>
     <string name="txt_scan_2">Scan2</string>
+    <string name="txt_demo">Demo</string>
 </resources>

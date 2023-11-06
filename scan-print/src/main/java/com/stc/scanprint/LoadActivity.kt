@@ -1,19 +1,15 @@
-package com.stc.onecheck.modules
+package com.stc.scanprint
 
 import android.content.Intent
 import android.net.Uri
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
-import com.stc.onecheck.R
-import com.stc.onecheck.databinding.ActivityLoadBinding
-import com.stc.onecheck.utils.Shared
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.stc.scanprint.databinding.ActivityLoadBinding
+import com.stc.scanprint.utils.Shared
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -28,7 +24,7 @@ class LoadActivity : AppCompatActivity() {
         binding = ActivityLoadBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //binding.tvAppVersion.text = Shared.getAppVersion(this)
+        //binding.tvAppVersion.text = Shared.getAppVersion(this)z
         binding.tvAppVersion.text = getString(R.string.txt_demo)
 
         Handler(Looper.getMainLooper()).postDelayed({
@@ -52,7 +48,7 @@ class LoadActivity : AppCompatActivity() {
         val saved = sharedPreferences.getBoolean("saved", false)
         val dateFirst = sharedPreferences.getString("dateFirst", "")
 
-        Log.d(LoadActivity::class.simpleName,"Date saved: $dateFirst")
+        Log.d(LoadActivity::class.simpleName, "Date saved: $dateFirst")
 
         var count = 0
         val myFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
@@ -61,12 +57,12 @@ class LoadActivity : AppCompatActivity() {
             val date2 = myFormat.parse(Shared.getDateNow())
             val diff = date2.time - date1.time
             count = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS).toInt()
-            Log.d(LoadActivity::class.simpleName,"count: $count")
+            Log.d(LoadActivity::class.simpleName, "count: $count")
         } catch (e: ParseException) {
             e.printStackTrace()
         }
 
-        if(!saved){
+        if (!saved) {
             val myEdit = sharedPreferences.edit()
             myEdit.putBoolean("saved", true)
             myEdit.putString("dateFirst", Shared.getDateNow())
@@ -75,12 +71,12 @@ class LoadActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
-        }else{
-            if(count < 29){
+        } else {
+            if (count < 29) {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
-            }else{
+            } else {
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle("Trial has expired")
                 //builder.setMessage("If you want to continue to use. Please re-install")
@@ -88,7 +84,7 @@ class LoadActivity : AppCompatActivity() {
                 builder.setPositiveButton(getString(R.string.txt_ok)) { dialog, id ->
                     //finish()
                     val intent = Intent(Intent.ACTION_DELETE)
-                    intent.data = Uri.parse("package:com.stc.onecheck")
+                    intent.data = Uri.parse("package:com.stc.printbt")
                     startActivity(intent)
                 }
                 val alert = builder.create()
