@@ -12,4 +12,4 @@ rootProject.name = "android-demo"
 include ':one-check'
 include ':scan-print'
 include ':copy-label'
-include ':printerservice'
+include ':library'

@@ -23,7 +23,7 @@ import com.stc.scanprint.databinding.FragmentBluetoothBinding
 import com.stc.scanprint.models.Barcode
 import com.stc.scanprint.models.PairedData
 import com.stc.scanprint.utils.Shared
-import com.thitipat.printerservice.PrinterService
+import com.ttpkk.mylibrary.print.PrinterService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

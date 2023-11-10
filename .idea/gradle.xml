@@ -12,8 +12,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/copy-label" />
+            <option value="$PROJECT_DIR$/library" />
             <option value="$PROJECT_DIR$/one-check" />
-            <option value="$PROJECT_DIR$/printerservice" />
             <option value="$PROJECT_DIR$/scan-print" />
           </set>
         </option>
