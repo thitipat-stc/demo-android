@@ -18,7 +18,7 @@ import androidx.activity.result.contract.ActivityResultContracts.*
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.stc.copylabel.databinding.ActivityMainBinding
-import com.ttpkk.mylibrary.print.PrinterService
+import com.ttpkk.library.PrinterService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
     private var alertDialog: AlertDialog? = null
 
-    private var printerService = PrinterService()
+    private var printerService = PrinterService(this)
     private var pairedDevices: Set<BluetoothDevice>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

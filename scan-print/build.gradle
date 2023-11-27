@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.stc.scanprint"
-        minSdk 24
+        minSdk 27
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -57,6 +57,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     //implementation project(path: ':ttpkk-library')
+
+    debugImplementation files('libs/library-debug.aar')
+    releaseImplementation files('libs/library-release.aar')
 
     /*ViewModel, LiveData*/
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"

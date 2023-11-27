@@ -47,5 +47,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     //implementation(project(mapOf("path" to ":ttpkk-library")))
 
+    implementation(files("./libs/library-release.aar"))
+
     implementation("com.airbnb.android:lottie:3.4.0")
 }

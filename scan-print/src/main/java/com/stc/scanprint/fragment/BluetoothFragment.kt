@@ -23,7 +23,7 @@ import com.stc.scanprint.databinding.FragmentBluetoothBinding
 import com.stc.scanprint.models.Barcode
 import com.stc.scanprint.models.PairedData
 import com.stc.scanprint.utils.Shared
-import com.ttpkk.mylibrary.print.PrinterService
+import com.ttpkk.library.PrinterService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -35,7 +35,7 @@ class BluetoothFragment : BottomSheetDialogFragment() {
 
     private var alertDialog: AlertDialog? = null
 
-    private var printerService = PrinterService()
+    private var printerService = PrinterService(requireContext())
     private var pairedDevices: Set<BluetoothDevice>? = null
 
     private var arrayList = ArrayList<Barcode>()
