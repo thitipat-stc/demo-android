@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
     private fun initEvent() {
         binding.spnPrinterAddress.inputType = InputType.TYPE_NULL
 
-        Shared.setEdittextChange(binding.edtScan1, binding.tilScan1)
+        Shared.setEdittextChange(binding.edtScan1, binding.tilScan1, binding.btnPrint)
 
         val adapter = ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, printerList())
         binding.spnPrinterAddress.setAdapter(adapter)
@@ -85,20 +85,25 @@ class MainActivity : AppCompatActivity() {
             val selectedItem = parent.getItemAtPosition(position) as PairedData
             if (selectedItem.value != null) {
                 setBTStatus(false)
-                try {
-                    CoroutineScope(Dispatchers.IO).launch {
+                CoroutineScope(Dispatchers.IO).launch {
+                    try {
                         withContext(Dispatchers.Main) {
                             setLoadingDialog(true)
                         }
+
                         printerService.setPrinter(selectedItem.value!!) //bluetoothDevice
                         printerService.connect()
+
                         withContext(Dispatchers.Main) {
                             setLoadingDialog(false)
                             setBTStatus(true)
                         }
+                    } catch (e: Exception) {
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(this@MainActivity, "${e.message}", Toast.LENGTH_SHORT).show()
+                            setLoadingDialog(false)
+                        }
                     }
-                } catch (e: Exception) {
-                    Toast.makeText(this, "${e.message}", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -109,6 +114,7 @@ class MainActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 Toast.makeText(this, "${e.message}", Toast.LENGTH_SHORT).show()
             } finally {
+                Shared.hideKeyboard(this)
                 setBTStatus(false)
             }
         }
@@ -180,7 +186,7 @@ class MainActivity : AppCompatActivity() {
             binding.ivStatus.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_usb_connect))
             binding.spnPrinterAddress.isEnabled = false
             binding.btnDisconnect.isEnabled = true
-            binding.btnPrint.isEnabled = true
+            binding.btnPrint.isEnabled = false
             binding.edtScan1.requestFocus()
             binding.edtScan1.text?.clear()
         } else {

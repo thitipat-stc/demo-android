@@ -9,6 +9,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import java.text.SimpleDateFormat
@@ -49,7 +50,7 @@ class Shared {
             textInputLayout.isHelperTextEnabled = false
         }
 
-        fun setEdittextChange(textInputEditText: TextInputEditText, textInputLayout: TextInputLayout) {
+        fun setEdittextChange(textInputEditText: TextInputEditText, textInputLayout: TextInputLayout, button: MaterialButton? = null) {
             textInputEditText.addTextChangedListener(object : TextWatcher {
                 override fun afterTextChanged(s: Editable) {}
                 override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
@@ -59,6 +60,9 @@ class Shared {
                         textInputLayout.isErrorEnabled = false
                         textInputLayout.helperText = null
                         textInputLayout.isHelperTextEnabled = false
+                        button?.isEnabled = true
+                    }else{
+                        button?.isEnabled = false
                     }
                 }
             })
