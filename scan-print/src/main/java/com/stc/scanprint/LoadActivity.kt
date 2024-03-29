@@ -10,6 +10,9 @@ import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import com.stc.scanprint.databinding.ActivityLoadBinding
 import com.stc.scanprint.utils.Shared
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -24,23 +27,23 @@ class LoadActivity : AppCompatActivity() {
         binding = ActivityLoadBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //binding.tvAppVersion.text = Shared.getAppVersion(this)z
+        //binding.tvAppVersion.text = Shared.getAppVersion(this)
         binding.tvAppVersion.text = getString(R.string.txt_demo)
 
-        Handler(Looper.getMainLooper()).postDelayed({
+        /*Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
-        }, 1000)
+        }, 1000)*/
 
-        /*CoroutineScope(Dispatchers.Main).launch {
+        CoroutineScope(Dispatchers.Main).launch {
             try {
                 Handler(Looper.getMainLooper()).postDelayed({
                     checkExpired()
                 },300)
             } catch (t: Throwable) {
             }
-        }*/
+        }
     }
 
     private fun checkExpired() {
@@ -72,7 +75,7 @@ class LoadActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         } else {
-            if (count < 29) {
+            if(count >= 0 && count < 29){
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()

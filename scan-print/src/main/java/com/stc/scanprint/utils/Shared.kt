@@ -93,7 +93,7 @@ class Shared {
             val layoutInflater = LayoutInflater.from(context)
             val alertView: View = layoutInflater.inflate(R.layout.dialog_loading, null)
             val builder = AlertDialog.Builder(context)
-            builder.setCancelable(false)
+            builder.setCancelable(true)
             builder.setView(alertView)
             val tvMessage = alertView.findViewById<View>(R.id.tv_message) as TextView
             if (str.isNotEmpty()) tvMessage.text = str

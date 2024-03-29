@@ -16,8 +16,12 @@ class MainViewModel(/*private val repository: ReceiveRepository*/) : ViewModel()
     }
 
     fun update(position: Int, barcode: Barcode) {
-        arrayList[position] = barcode
-        response.postValue(arrayList)
+        try {
+            arrayList[position] = barcode
+            response.postValue(arrayList)
+        }catch (e: Exception){
+
+        }
     }
 
     fun delete() {

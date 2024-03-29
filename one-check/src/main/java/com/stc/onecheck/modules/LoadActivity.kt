@@ -2,15 +2,18 @@ package com.stc.onecheck.modules
 
 import android.content.Intent
 import android.net.Uri
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import com.stc.onecheck.R
 import com.stc.onecheck.databinding.ActivityLoadBinding
 import com.stc.onecheck.utils.Shared
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -28,20 +31,20 @@ class LoadActivity : AppCompatActivity() {
         //binding.tvAppVersion.text = Shared.getAppVersion(this)
         binding.tvAppVersion.text = getString(R.string.txt_demo)
 
-        Handler(Looper.getMainLooper()).postDelayed({
+        /*Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
-        }, 1000)
+        }, 1000)*/
 
-        /*CoroutineScope(Dispatchers.Main).launch {
+        CoroutineScope(Dispatchers.Main).launch {
             try {
                 Handler(Looper.getMainLooper()).postDelayed({
                     checkExpired()
                 },300)
             } catch (t: Throwable) {
             }
-        }*/
+        }
     }
 
     private fun checkExpired() {
@@ -73,7 +76,7 @@ class LoadActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }else{
-            if(count < 29){
+            if(count >= 0 && count < 29){
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()

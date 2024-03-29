@@ -1,9 +1,12 @@
 package com.stc.scanprint.fragment
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.content.DialogInterface
+import android.content.Intent
+import android.os.Build
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.os.Handler
@@ -15,7 +18,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.stc.scanprint.R
@@ -35,7 +40,7 @@ class BluetoothFragment : BottomSheetDialogFragment() {
 
     private var alertDialog: AlertDialog? = null
 
-    private var printerService = PrinterService(requireContext())
+    private var printerService: PrinterService? = null
     private var pairedDevices: Set<BluetoothDevice>? = null
 
     private var arrayList = ArrayList<Barcode>()
@@ -55,7 +60,10 @@ class BluetoothFragment : BottomSheetDialogFragment() {
 
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
-        printerService.disconnect()
+        try {
+            printerService?.disconnect()
+        } catch (e: Exception) {
+        }
         onEvent.clickItem(true)
     }
 
@@ -79,6 +87,32 @@ class BluetoothFragment : BottomSheetDialogFragment() {
             /*transactionNo = bundle.getString("transactionNo") ?: ""
             partNo = bundle.getString("partNo") ?: ""
             lot = bundle.getString("lot") ?: ""*/
+        }
+
+        initPermission()
+        printerService = PrinterService(requireContext())
+    }
+
+    private fun initPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            requestMultiplePermissions.launch(arrayOf(Manifest.permission.BLUETOOTH_SCAN, Manifest.permission.BLUETOOTH_CONNECT))
+        } else {
+            val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+            requestBluetooth.launch(enableBtIntent)
+        }
+    }
+
+    private var requestBluetooth = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == AppCompatActivity.RESULT_OK) {
+            Toast.makeText(requireContext(), "Granted", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(requireContext(), "Denied", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private val requestMultiplePermissions = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+        permissions.entries.forEach {
+            Toast.makeText(requireContext(), "${it.key} = ${it.value}", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -107,11 +141,20 @@ class BluetoothFragment : BottomSheetDialogFragment() {
                         withContext(Dispatchers.Main) {
                             setLoadingDialog(true)
                         }
-                        printerService.setPrinter(selectedItem.value!!) //bluetoothDevice
-                        printerService.connect()
-                        withContext(Dispatchers.Main) {
-                            setLoadingDialog(false)
-                            setBTStatus(true)
+                        try {
+                            printerService?.setPrinter(selectedItem.value!!) //bluetoothDevice
+                            printerService?.connect()
+
+                            withContext(Dispatchers.Main) {
+                                setLoadingDialog(false)
+                                setBTStatus(true)
+                            }
+
+                        } catch (e: Exception) {
+                            withContext(Dispatchers.Main) {
+                                Toast.makeText(requireContext(), "${e.message}", Toast.LENGTH_SHORT).show()
+                                setBTStatus(false)
+                            }
                         }
                     }
                 } catch (e: Exception) {
@@ -122,7 +165,7 @@ class BluetoothFragment : BottomSheetDialogFragment() {
 
         binding.btnDisconnect.setOnClickListener {
             try {
-                printerService.disconnect()
+                printerService?.disconnect()
             } catch (e: Exception) {
                 Toast.makeText(requireContext(), "${e.message}", Toast.LENGTH_SHORT).show()
             } finally {
@@ -140,26 +183,38 @@ class BluetoothFragment : BottomSheetDialogFragment() {
     }
 
     private fun sendToPrint2(scanData: Barcode) {
-        val format = "\u001BA\n" +
-                "\u001BA3V+00000H+0000\u001BCS4\u001B#F5\n" +
-                "\u001BA1V00480H0440\n" +
-                "\u001BZ\n" +
-                "\u001BA\u001BPS\u001BWKLabel - 53x58\n" +
-                "\u001B%0\u001BH0099\u001BV00054\u001BP02\u001BRH0,SATO0.ttf,1,024,028,Android Print Demo\n" +
-                "\u001B%0\u001BH0156\u001BV00130\u001B2D30,L,05,1,0\u001BDN^2$,^1$\n" +
-                "\u001B%0\u001BH0085\u001BV00395\u001BP02\u001BRH0,SATO0.ttf,0,022,023,^3$\n" +
-                "\u001BQ1\n" +
-                "\u001BZ"
+        try {
+            val format = "\u001BA\n" +
+                    "\u001BA3V+00000H+0000\u001BCS4\u001B#F5\n" +
+                    "\u001BA1V00480H0440\n" +
+                    "\u001BZ\n" +
+                    "\u001BA\u001BPS\u001BWKLabel - 53x58\n" +
+                    "\u001B%0\u001BH0099\u001BV00054\u001BP02\u001BRH0,SATO0.ttf,1,024,028,Android Print Demo\n" +
+                    "\u001B%0\u001BH0156\u001BV00130\u001B2D30,L,05,1,0\u001BDN^2$,^1$\n" +
+                    "\u001B%0\u001BH0085\u001BV00395\u001BP02\u001BRH0,SATO0.ttf,0,022,023,^3$\n" +
+                    "\u001BQ1\n" +
+                    "\u001BZ"
 
-        val newDetail = format
-            .replace("^1$", scanData.barcode)
-            .replace("^2$", scanData.barcode.length.toString())
-            .replace("^3$", Shared.convertDate(scanData.timestamp))
+            val newDetail = format
+                .replace("^1$", scanData.barcode)
+                .replace("^2$", scanData.barcode.length.toString())
+                .replace("^3$", Shared.convertDate(scanData.timestamp))
 
-        val detailBytes = newDetail.toByteArray()
-        CoroutineScope(Dispatchers.IO).launch {
-            printerService.sendCommandToPrint(detailBytes)
-            printedList.add(scanData)
+            val detailBytes = newDetail.toByteArray()
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    printerService?.sendCommandToPrint(detailBytes)
+                    printedList.add(scanData)
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(requireContext(), "${e.message}", Toast.LENGTH_SHORT).show()
+                        setBTStatus(false)
+                    }
+                }
+            }
+        } catch (e: Exception) {
+            Toast.makeText(requireContext(), "${e.message}", Toast.LENGTH_SHORT).show()
+            setBTStatus(false)
         }
     }
 

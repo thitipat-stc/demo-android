@@ -94,6 +94,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dm_32"
+        android:enabled="false"
         android:layout_marginEnd="@dimen/dm_32"
         android:layout_marginBottom="@dimen/dm_128"
         android:text="@string/txt_print"
