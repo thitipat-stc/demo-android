@@ -7,7 +7,7 @@
     <string name="txt_app_version_unset">Version 0&#46;0&#46;0</string>
     <string name="txt_user_unset">User: …</string>
     <string name="txt_user_format">User: %1$s</string>
-    <string name="txt_remain_day_s">Remain: %1$s Day(s)</string>
+    <string name="txt_remain_day_s">Remain: %1$d Day(s)</string>
 
     <!--Settings-->
     <string name="title_master">Master</string>

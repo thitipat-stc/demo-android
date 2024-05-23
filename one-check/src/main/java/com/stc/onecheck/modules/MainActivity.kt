@@ -12,6 +12,7 @@ import android.view.View
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -37,6 +38,11 @@ class MainActivity : AppCompatActivity(), View.OnKeyListener, View.OnClickListen
         const val T_MEDIUM = 64f
         const val T_LARGE = 128f
     }
+
+    private var clickCount = 0
+    private val clickThreshold = 8
+    private val clickTimeout: Long = 3000 // 3 seconds to complete 8 clicks
+    private val handler = Handler(Looper.getMainLooper())
 
     override fun onResume() {
         super.onResume()
@@ -105,6 +111,7 @@ class MainActivity : AppCompatActivity(), View.OnKeyListener, View.OnClickListen
         binding.edtScan2.setOnKeyListener(this)
         binding.btnClear.setOnClickListener(this)
         binding.btnSettings.setOnClickListener(this)
+        binding.tvRemain.setOnClickListener(this)
         Shared.setEdittextChange(binding.edtScan1, binding.tilScan1)
         Shared.setEdittextChange(binding.edtScan2, binding.tilScan2)
     }
@@ -170,7 +177,27 @@ class MainActivity : AppCompatActivity(), View.OnKeyListener, View.OnClickListen
                 val intent = Intent(this, SettingsActivity::class.java)
                 startActivity(intent)
             }
+
+            R.id.tv_remain -> {
+                clickCount++
+                if (clickCount == 1) {
+                    handler.postDelayed(resetClickCountRunnable, clickTimeout)
+                }
+
+                if (clickCount == clickThreshold) {
+                    handler.removeCallbacks(resetClickCountRunnable)
+                    performAction()
+                }
+            }
         }
+    }
+
+    private val resetClickCountRunnable = Runnable {
+        clickCount = 0
+    }
+
+    private fun performAction() {
+
     }
 
     private fun clearActivity() {
