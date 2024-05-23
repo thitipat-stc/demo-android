@@ -2,6 +2,7 @@ package com.stc.onecheck.modules
 
 import android.animation.ValueAnimator
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -12,13 +13,13 @@ import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
 import com.stc.onecheck.R
 import com.stc.onecheck.databinding.ActivityMainBinding
 import com.stc.onecheck.utils.Shared
-import com.thitipat.printerservice.PrinterService
 
 class MainActivity : AppCompatActivity(), View.OnKeyListener, View.OnClickListener {
 
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity(), View.OnKeyListener, View.OnClickListen
     private var keyEffect: Int = 0
     private var countOK: Int = 0
     private var countNG: Int = 0
+    private var rm: Int = 0
 
     companion object {
         const val T_SMALL = 24f
@@ -64,6 +66,15 @@ class MainActivity : AppCompatActivity(), View.OnKeyListener, View.OnClickListen
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val extras = intent.extras
+        val bool = extras?.getBoolean("IsExpire") ?: false
+        val remain = extras?.getInt("IsRemain") ?: 0
+        if (bool) {
+            rm = 29 - remain
+            binding.tvRemain.text = getString(R.string.txt_remain_day_s, rm)
+            showWarning()
+        }
+
         binding.tvAppVersion.text = getString(R.string.txt_demo)
 
         val callback = object : OnBackPressedCallback(true) {
@@ -75,6 +86,17 @@ class MainActivity : AppCompatActivity(), View.OnKeyListener, View.OnClickListen
         onBackPressedDispatcher.addCallback(callback)
 
         initEvent()
+    }
+
+    private fun showWarning() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("One Check Demo")
+        builder.setMessage(getString(R.string.txt_remain_day_s, rm))
+        builder.setCancelable(true)
+        builder.setPositiveButton(getString(R.string.txt_ok)) { dialog, id -> dialog.dismiss() }
+        val alert = builder.create()
+        alert.setCanceledOnTouchOutside(false)
+        alert.show()
     }
 
     private fun initEvent() {

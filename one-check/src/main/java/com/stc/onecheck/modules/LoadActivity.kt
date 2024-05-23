@@ -28,11 +28,11 @@ class LoadActivity : AppCompatActivity() {
         binding = ActivityLoadBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //binding.tvAppVersion.text = Shared.getAppVersion(this)
         binding.tvAppVersion.text = getString(R.string.txt_demo)
 
         /*Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("IsExpire", false)
             startActivity(intent)
             finish()
         }, 1000)*/
@@ -41,7 +41,7 @@ class LoadActivity : AppCompatActivity() {
             try {
                 Handler(Looper.getMainLooper()).postDelayed({
                     checkExpired()
-                },300)
+                },1000)
             } catch (t: Throwable) {
             }
         }
@@ -73,11 +73,14 @@ class LoadActivity : AppCompatActivity() {
             myEdit.apply()
 
             val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("IsExpire", true)
             startActivity(intent)
             finish()
         }else{
-            if(count >= 0 && count < 29){
+            if(count >= 0 && count < 30){
                 val intent = Intent(this, MainActivity::class.java)
+                intent.putExtra("IsExpire", true)
+                intent.putExtra("IsRemain", count)
                 startActivity(intent)
                 finish()
             }else{

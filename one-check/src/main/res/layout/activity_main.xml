@@ -56,6 +56,13 @@
                 android:layout_height="wrap_content"
                 android:text="@string/txt_developed_by_sato_auto_id_thailand" />
 
+            <TextView
+                android:id="@+id/tv_remain"
+                style="@style/TextSmall.Red.Bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="..." />
+
         </LinearLayout>
 
         <ImageButton

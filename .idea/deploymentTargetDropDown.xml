@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="deploymentTargetDropDown">
+    <value>
+      <entry key="copy-label">
+        <State />
+      </entry>
+      <entry key="one-check">
+        <State />
+      </entry>
+      <entry key="scan-print">
+        <State>
+          <targetSelectedWithDropDown>
+            <Target>
+              <type value="QUICK_BOOT_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\Thitipat\.android\avd\Honeywell_EDA51_API_29.avd" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-04-30T03:02:11.668792500Z" />
+        </State>
+      </entry>
+    </value>
+  </component>
+</project>

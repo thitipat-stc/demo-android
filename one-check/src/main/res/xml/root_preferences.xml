@@ -28,6 +28,7 @@
             android:entryValues="@array/effect_value"
             android:layout="@layout/layout_preference_edt"
             app:defaultValue="0"
+            app:isPreferenceVisible="false"
             app:icon="@drawable/ic_outline_auto_awesome_24"
             app:key="@string/txt_key_effect"
             app:title="@string/title_effect"
