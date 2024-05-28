@@ -1,0 +1,17 @@
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory android:layout="@layout/layout_preference_title">
+
+        <ListPreference
+            android:entries="@array/key_interface"
+            android:entryValues="@array/value_interface"
+            android:layout="@layout/layout_preference_edt"
+            app:defaultValue="0"
+            app:icon="@drawable/outline_import_export_24"
+            app:key="@string/txt_key_interface"
+            app:title="@string/title_interface"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+</androidx.preference.PreferenceScreen>

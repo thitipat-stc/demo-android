@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_liquid_cheese"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/TextLarge.Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dm_32"
+        android:layout_marginTop="@dimen/dm_36"
+        android:layout_marginEnd="@dimen/dm_32"
+        android:text="@string/txt_printer_setting" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dm_32"
+        android:layout_marginTop="@dimen/dm_24"
+        android:layout_marginEnd="@dimen/dm_32"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_printer_address"
+            style="@style/Widget.App.TextInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/txt_printer_address"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/selector_fields_stroke"
+            app:startIconDrawable="@drawable/ic_baseline_print_24"
+            app:startIconTint="@color/selector_fields_stroke">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_printer_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:selectAllOnFocus="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/iv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_usb_disconnect" />
+
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_printer_port"
+        style="@style/Widget.App.TextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dm_32"
+        android:layout_marginTop="@dimen/dm_8"
+        android:layout_marginEnd="@dimen/dm_32"
+        android:hint="@string/title_port"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/selector_fields_stroke"
+        app:startIconDrawable="@drawable/ic_baseline_print_24"
+        app:startIconTint="@color/selector_fields_stroke">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_printer_port"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:selectAllOnFocus="true" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_print"
+        style="?attr/materialIconButtonFilledStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dm_32"
+        android:layout_marginTop="@dimen/dm_24"
+        android:layout_marginEnd="@dimen/dm_32"
+        android:text="@string/txt_print"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_disconnect"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.0" />
+
+</LinearLayout>

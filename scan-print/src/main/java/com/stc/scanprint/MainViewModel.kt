@@ -1,38 +1,40 @@
 package com.stc.scanprint
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.stc.scanprint.fragment.BluetoothFragment
 import com.stc.scanprint.models.Barcode
 
 class MainViewModel(/*private val repository: ReceiveRepository*/) : ViewModel() {
 
-    private var arrayList = ArrayList<Barcode>()
-    var response = MutableLiveData<ArrayList<Barcode>>()
+    private val _itemList = MutableLiveData<ArrayList<Barcode>>()
+    val itemList: LiveData<ArrayList<Barcode>> = _itemList
 
-    fun insert(barcode: Barcode) {
-        arrayList.add(barcode)
-        response.postValue(arrayList)
+    fun addBarcode(barcode: Barcode) {
+        val list = _itemList.value ?: arrayListOf()
+        list.add(barcode)
+        _itemList.value = list
+        //adapter.notifyItemInserted(itemList.size - 1)
     }
 
-    fun update(position: Int, barcode: Barcode) {
-        try {
-            arrayList[position] = barcode
-            response.postValue(arrayList)
-        }catch (e: Exception){
+    fun readBarcodes(): List<Barcode>? {
+        return _itemList.value?.toList()
+    }
 
+    fun updateBarcode(barcode: Barcode, isChecked: Boolean) {
+        val list = _itemList.value ?: return
+        val index = list.indexOfFirst { it.id == barcode.id }
+        if (index != -1) {
+            list[index].isChecked = isChecked
+            _itemList.value = list // Update LiveData
         }
     }
 
-    fun delete() {
-        arrayList.clear()
-        response.postValue(arrayList)
+    fun deleteBarcode() {
+        val list = _itemList.value ?: return
+        val filteredList = list.filter { !it.isChecked } as ArrayList<Barcode>
+        _itemList.value?.clear()
+        _itemList.value = filteredList
     }
 
-    fun delete(scanBarcode: ArrayList<Barcode>) {
-        scanBarcode.forEach {
-            arrayList.remove(it)
-        }
-        response.postValue(arrayList)
-    }
 }

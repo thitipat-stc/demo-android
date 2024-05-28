@@ -9,20 +9,7 @@
         <State />
       </entry>
       <entry key="scan-print">
-        <State>
-          <targetSelectedWithDropDown>
-            <Target>
-              <type value="QUICK_BOOT_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\Thitipat\.android\avd\Honeywell_EDA51_API_29.avd" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-04-30T03:02:11.668792500Z" />
-        </State>
+        <State />
       </entry>
     </value>
   </component>

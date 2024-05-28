@@ -34,7 +34,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class BluetoothFragment : BottomSheetDialogFragment() {
+class BluetoothTopFragment(private val list: List<Barcode>) : BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentBluetoothBinding
 
@@ -43,12 +43,11 @@ class BluetoothFragment : BottomSheetDialogFragment() {
     private var printerService: PrinterService? = null
     private var pairedDevices: Set<BluetoothDevice>? = null
 
-    private var arrayList = ArrayList<Barcode>()
     private lateinit var onEvent: OnEvent
 
     companion object {
-        fun newInstance(): BluetoothFragment {
-            return BluetoothFragment()
+        fun newInstance(list: List<Barcode>): BluetoothTopFragment {
+            return BluetoothTopFragment(list)
         }
 
         var printedList = ArrayList<Barcode>()
@@ -80,14 +79,14 @@ class BluetoothFragment : BottomSheetDialogFragment() {
             onEvent = (activity as OnEvent?)!!
         }*/
 
-        val bundle = this.arguments
+        /*val bundle = this.arguments
         if (bundle != null) {
             arrayList = bundle.parcelableArrayList("arrayList")!!
 
-            /*transactionNo = bundle.getString("transactionNo") ?: ""
+            *//*transactionNo = bundle.getString("transactionNo") ?: ""
             partNo = bundle.getString("partNo") ?: ""
-            lot = bundle.getString("lot") ?: ""*/
-        }
+            lot = bundle.getString("lot") ?: ""*//*
+        }*/
 
         initPermission()
         printerService = PrinterService(requireContext())
@@ -174,7 +173,7 @@ class BluetoothFragment : BottomSheetDialogFragment() {
         }
 
         binding.btnPrint.setOnClickListener {
-            arrayList.forEach {
+            list.forEach {
                 Handler(Looper.getMainLooper()).postDelayed({
                     sendToPrint2(it)
                 }, 200)
@@ -184,14 +183,15 @@ class BluetoothFragment : BottomSheetDialogFragment() {
 
     private fun sendToPrint2(scanData: Barcode) {
         try {
-            val format = "\u001BA\n" +
-                    "\u001BA3V+00000H+0000\u001BCS4\u001B#F5\n" +
-                    "\u001BA1V00480H0440\n" +
+            var format = "\u001BA\n" +
+                    "\u001BA3V+00000H+0000\u001BCS6\u001B#F5\n" +
+                    "\u001BA1V00440H0440\n" +
                     "\u001BZ\n" +
-                    "\u001BA\u001BPS\u001BWKLabel - 53x58\n" +
-                    "\u001B%0\u001BH0099\u001BV00054\u001BP02\u001BRH0,SATO0.ttf,1,024,028,Android Print Demo\n" +
-                    "\u001B%0\u001BH0156\u001BV00130\u001B2D30,L,05,1,0\u001BDN^2$,^1$\n" +
-                    "\u001B%0\u001BH0085\u001BV00395\u001BP02\u001BRH0,SATO0.ttf,0,022,023,^3$\n" +
+                    "\u001BA\u001BPS\u001BWKLabel\n" +
+                    "\u001B%0\u001BH0168\u001BV00127\u001B2D30,L,05,1,0\u001BDN^2$,^1$\n" +
+                    "\u001B%0\u001BH0076\u001BV00055\u001BP02\u001BRH0,SATO0.ttf,0,033,034,Android Print Demo\n" +
+                    "\u001B%0\u001BH0105\u001BV00364\u001BP02\u001BRH0,SATO0.ttf,0,022,023,^3$\n" +
+                    "\u001B%0\u001BH0150\u001BV00260\u001BP02\u001BRH0,SATO0.ttf,0,022,023,^1$\n" +
                     "\u001BQ1\n" +
                     "\u001BZ"
 
@@ -240,7 +240,7 @@ class BluetoothFragment : BottomSheetDialogFragment() {
             binding.btnPrint.isEnabled = true
         } else {
             binding.ivStatus.setImageDrawable(
-                ContextCompat.getDrawable(this@BluetoothFragment.requireContext(), R.drawable.ic_usb_disconnect)
+                ContextCompat.getDrawable(this@BluetoothTopFragment.requireContext(), R.drawable.ic_usb_disconnect)
             )
             binding.spnPrinterAddress.isEnabled = true
             binding.btnDisconnect.isEnabled = false

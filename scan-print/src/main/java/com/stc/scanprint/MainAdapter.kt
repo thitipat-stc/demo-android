@@ -81,10 +81,10 @@ class MainAdapter(private val context: Context, private val onEvent: OnEvent) : 
                 checkbox.setOnCheckedChangeListener { _, isChecked ->
                     if (isChecked) {
                         cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.gainsboro))
-                        onEvent.onCheckBox(position, barcode.barcode, barcode.timestamp, true)
+                        onEvent.onCheckBox(barcode, true)
                     } else {
                         cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.white))
-                        onEvent.onCheckBox(position, barcode.barcode, barcode.timestamp, false)
+                        onEvent.onCheckBox(barcode, false)
                     }
                 }
             }
@@ -92,6 +92,6 @@ class MainAdapter(private val context: Context, private val onEvent: OnEvent) : 
     }
 
     interface OnEvent {
-        fun onCheckBox(position: Int, barcode: String, timestamp: Date, isCheck: Boolean)
+        fun onCheckBox(barcode: Barcode, isCheck: Boolean)
     }
 }

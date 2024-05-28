@@ -14,6 +14,7 @@
         <!-- Customize your theme here. -->
         <!--<item name="fontFamily">@font/barlow</item>-->
         <item name="alertDialogTheme">@style/AppTheme.AlertDialogTheme</item>
+        <item name="textInputStyle">@style/Widget.App.TextInputLayout</item>
 
     </style>
 
@@ -23,22 +24,16 @@
 
 
     <!--TextInputLayout-->
-    <style name="Widget.App.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
-        <!--<item name="materialThemeOverlay">@style/ThemeOverlay.App.TextInputLayout</item>-->
-        <!--<item name="shapeAppearance">@style/ShapeAppearance.App.SmallComponent</item>-->
-        <item name="boxBackgroundColor">@color/fields_input_selector</item>
-        <!--<item name="boxBackgroundColor">@android:color/transparent</item>-->
-        <!--<item name="boxStrokeColor">@color/fields_stroke_selector</item>-->
-        <item name="boxStrokeWidth">1dp</item>
-        <item name="boxStrokeWidthFocused">2dp</item>
+    <style name="Widget.App.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="hintTextColor">@color/gray</item>
         <item name="android:textColorHint">@color/gray</item>
+        <item name="android:textSize">@dimen/text_medium</item>
         <item name="errorTextColor">@color/red</item>
-        <item name="helperTextTextColor">@color/orange</item>
-        <!--<item name="boxCornerRadiusBottomEnd">@dimen/dm_8</item>
+        <item name="helperTextTextColor">@color/green</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/dm_8</item>
         <item name="boxCornerRadiusBottomStart">@dimen/dm_8</item>
         <item name="boxCornerRadiusTopEnd">@dimen/dm_8</item>
-        <item name="boxCornerRadiusTopStart">@dimen/dm_8</item>-->
+        <item name="boxCornerRadiusTopStart">@dimen/dm_8</item>
     </style>
 
     <style name="Widget.App.DropdownMenu" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu">
