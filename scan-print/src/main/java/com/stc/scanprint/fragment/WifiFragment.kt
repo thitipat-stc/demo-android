@@ -12,7 +12,6 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.preference.PreferenceManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.stc.scanprint.R
 import com.stc.scanprint.databinding.FragmentWifiBinding
@@ -32,8 +31,8 @@ class WifiFragment(private val list: List<Barcode>) : BottomSheetDialogFragment(
     private lateinit var binding: FragmentWifiBinding
     private var alertDialog: AlertDialog? = null
 
-    private lateinit var output: PrintWriter
-    private lateinit var input: BufferedReader
+    private lateinit var writer: PrintWriter
+    private lateinit var reader: BufferedReader
 
     private var sharedPreferences: SharedPreferences? = null
     private var address = "192.168.10.61"
@@ -143,8 +142,8 @@ class WifiFragment(private val list: List<Barcode>) : BottomSheetDialogFragment(
                     try {
                         socket = Socket(address, port.toInt())
 
-                        output = PrintWriter(socket.getOutputStream())
-                        input = BufferedReader(InputStreamReader(socket.getInputStream()))
+                        writer = PrintWriter(socket.getOutputStream())
+                        reader = BufferedReader(InputStreamReader(socket.getInputStream()))
 
                         list.forEach label@{
                             val newFormat = format
@@ -152,8 +151,8 @@ class WifiFragment(private val list: List<Barcode>) : BottomSheetDialogFragment(
                                 .replace("^2$", it.barcode.length.toString())
                                 .replace("^3$", Shared.convertDate(it.timestamp))
 
-                            output.write(newFormat)
-                            output.flush()
+                            writer.write(newFormat)
+                            writer.flush()
                         }
 
                     } catch (e: IOException) {

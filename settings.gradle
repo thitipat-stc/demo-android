@@ -8,7 +8,7 @@ dependencyResolutionManagement {
         }
     }
 }
-rootProject.name = "android-demo"
+rootProject.name = "demo-android"
 include ':one-check'
 include ':scan-print'
 include ':copy-label'
