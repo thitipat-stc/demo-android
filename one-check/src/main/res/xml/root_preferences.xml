@@ -1,7 +1,9 @@
 <androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory android:layout="@layout/layout_preference_title">
+    <PreferenceCategory
+        android:layout="@layout/layout_preference_title"
+        app:title="General">
 
         <ListPreference
             android:entries="@array/master_key"
@@ -28,10 +30,24 @@
             android:entryValues="@array/effect_value"
             android:layout="@layout/layout_preference_edt"
             app:defaultValue="0"
-            app:isPreferenceVisible="false"
             app:icon="@drawable/ic_outline_auto_awesome_24"
+            app:isPreferenceVisible="false"
             app:key="@string/txt_key_effect"
             app:title="@string/title_effect"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout="@layout/layout_preference_title"
+        app:title="Patlite">
+
+        <EditTextPreference
+            android:layout="@layout/layout_preference_edt"
+            app:defaultValue="192.168.0.1"
+            app:icon="@drawable/ic_dns_24px"
+            app:key="@string/txt_key_address"
+            app:title="@string/title_address"
             app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>

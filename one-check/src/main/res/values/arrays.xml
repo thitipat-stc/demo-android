@@ -30,4 +30,16 @@
         <item>1</item>
         <item>2</item>
     </string-array>
+
+    <!--<string-array name="pattern_key">
+        <item>No Pattern</item>
+        <item>Pattern 1</item>
+        <item>Pattern 2</item>
+    </string-array>
+
+    <string-array name="pattern_value">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>-->
 </resources>

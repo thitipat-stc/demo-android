@@ -13,10 +13,12 @@
     <string name="title_master">Master</string>
     <string name="title_keyboard">Enable Keyboard</string>
     <string name="title_effect">Choose Effect</string>
+    <string name="title_address">Patlite Address</string>
 
     <string name="txt_key_master">key_master</string>
     <string name="txt_key_keyboard">key_keyboard</string>
     <string name="txt_key_effect">key_effect</string>
+    <string name="txt_key_address">key_address</string>
     <!--Settings-->
 
     <string name="txt_please_input_value">Please input value</string>

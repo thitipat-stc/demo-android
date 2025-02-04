@@ -2,11 +2,12 @@ package com.stc.onecheck.modules
 
 import android.animation.ValueAnimator
 import android.content.Intent
-import android.net.Uri
+import android.net.http.NetworkException
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.text.InputType
+import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.view.animation.AlphaAnimation
@@ -20,7 +21,12 @@ import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
 import com.stc.onecheck.R
 import com.stc.onecheck.databinding.ActivityMainBinding
+import com.stc.onecheck.services.ControlResponse
+import com.stc.onecheck.services.HttpManager
 import com.stc.onecheck.utils.Shared
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity(), View.OnKeyListener, View.OnClickListener {
 
@@ -37,12 +43,14 @@ class MainActivity : AppCompatActivity(), View.OnKeyListener, View.OnClickListen
         const val T_SMALL = 24f
         const val T_MEDIUM = 64f
         const val T_LARGE = 128f
+        var keyAddress: String = ""
     }
 
     private var clickCount = 0
     private val clickThreshold = 8
     private val clickTimeout: Long = 3000 // 3 seconds to complete 8 clicks
     private val handler = Handler(Looper.getMainLooper())
+    private var pattern: String = ""
 
     override fun onResume() {
         super.onResume()
@@ -53,6 +61,7 @@ class MainActivity : AppCompatActivity(), View.OnKeyListener, View.OnClickListen
         keyMaster = settingPrefs.getString(getString(R.string.txt_key_master), "1")?.toInt() ?: 1
         keyKeyboard = settingPrefs.getString(getString(R.string.txt_key_keyboard), "0")?.toInt() ?: 0
         keyEffect = settingPrefs.getString(getString(R.string.txt_key_effect), "0")?.toInt() ?: 0
+        keyAddress = settingPrefs.getString(getString(R.string.txt_key_address), "") ?: ""
 
         if (keyKeyboard == 0) {
             binding.edtScan1.inputType = InputType.TYPE_NULL
@@ -64,6 +73,11 @@ class MainActivity : AppCompatActivity(), View.OnKeyListener, View.OnClickListen
 
         if (keyEffect == 0) {
             clearEffect()
+        }
+
+        binding.btnClear.setOnLongClickListener {
+            sendLight(false, "1")
+            true
         }
     }
 
@@ -296,6 +310,15 @@ class MainActivity : AppCompatActivity(), View.OnKeyListener, View.OnClickListen
 
                 countOK++
                 binding.tvOkCount.text = countOK.toString()
+
+                pattern = "002000"
+                sendLight(true, pattern)
+
+                Handler(Looper.getMainLooper()).postDelayed({
+                    pattern = "1"
+                    sendLight(false, pattern)
+                }, 4000)
+
             } else {
                 Shared.soundAlert(this, Shared.SND.ERROR, true)
                 binding.tvNg.setTextColor(ContextCompat.getColor(this, R.color.alert_danger))
@@ -312,6 +335,11 @@ class MainActivity : AppCompatActivity(), View.OnKeyListener, View.OnClickListen
 
                 countNG++
                 binding.tvNgCount.text = countNG.toString()
+
+//                pattern = "200000" //RED
+                pattern = "330000"
+                sendLight(true, pattern)
+
             }
         } else {
             binding.tvOk.setTextColor(ContextCompat.getColor(this, R.color.gainsboro))
@@ -343,6 +371,38 @@ class MainActivity : AppCompatActivity(), View.OnKeyListener, View.OnClickListen
             textView.textSize = animatedValue
         }
         animator.start()
+    }
+
+    private fun sendLight(bool: Boolean, pattern: String) {
+        try {
+            if (bool) {
+                Log.d(MainActivity::class.java.simpleName, "-SEND:$pattern-")
+                HttpManager.instance?.api?.send(pattern)?.enqueue(object : Callback<String?> {
+                    override fun onResponse(call: Call<String?>, response: Response<String?>) {
+                        if (!response.isSuccessful) Toast.makeText(this@MainActivity, "failed message: ${response.message()}, code: ${response.code()}", Toast.LENGTH_SHORT).show()
+                        else Log.i(MainActivity::class.java.simpleName, "Send Receive ${response.message()}")
+                    }
+
+                    override fun onFailure(call: Call<String?>, t: Throwable) {
+                        Toast.makeText(this@MainActivity, "onFailure message: $t, code: ", Toast.LENGTH_SHORT).show()
+                    }
+                })
+            } else {
+                Log.d(MainActivity::class.java.simpleName, "-CLEAR-")
+                HttpManager.instance?.api?.clear(pattern)?.enqueue(object : Callback<String?> {
+                    override fun onResponse(call: Call<String?>, response: Response<String?>) {
+                        if (!response.isSuccessful) Toast.makeText(this@MainActivity, "failed message: ${response.message()}, code: ${response.code()}", Toast.LENGTH_SHORT).show()
+                        else Log.i(MainActivity::class.java.simpleName, "Clear Receive ${response.message()}")
+                    }
+
+                    override fun onFailure(call: Call<String?>, t: Throwable) {
+                        Toast.makeText(this@MainActivity, "onFailure message: $t, code: ", Toast.LENGTH_SHORT).show()
+                    }
+                })
+            }
+        } catch (e: Exception) {
+            Toast.makeText(this@MainActivity, "Exception: ${e.localizedMessage}", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun clearEffect() {
