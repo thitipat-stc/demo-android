@@ -6,7 +6,6 @@ plugins {
 }
 
 android {
-    namespace 'com.stc.scanprint'
     compileSdk 34
 
     defaultConfig {

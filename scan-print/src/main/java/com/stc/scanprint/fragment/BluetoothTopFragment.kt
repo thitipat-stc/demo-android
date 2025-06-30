@@ -183,7 +183,7 @@ class BluetoothTopFragment(private val list: List<Barcode>) : BottomSheetDialogF
 
     private fun sendToPrint2(scanData: Barcode) {
         try {
-            var format = "\u001BA\n" +
+            /*var format = "\u001BA\n" +
                     "\u001BA3V+00000H+0000\u001BCS6\u001B#F5\n" +
                     "\u001BA1V00440H0440\n" +
                     "\u001BZ\n" +
@@ -192,6 +192,21 @@ class BluetoothTopFragment(private val list: List<Barcode>) : BottomSheetDialogF
                     "\u001B%0\u001BH0076\u001BV00055\u001BP02\u001BRH0,SATO0.ttf,0,033,034,Android Print Demo\n" +
                     "\u001B%0\u001BH0105\u001BV00364\u001BP02\u001BRH0,SATO0.ttf,0,022,023,^3$\n" +
                     "\u001B%0\u001BH0150\u001BV00260\u001BP02\u001BRH0,SATO0.ttf,0,022,023,^1$\n" +
+                    "\u001BQ1\n" +
+                    "\u001BZ"*/
+            var format = "\u001BA\n" +
+                    "\u001BA3V+00000H+0000\u001BCS4\u001B#F5\n" +
+                    "\u001BA1V00615H0416\n" +
+                    "\u001BZ\n" +
+                    "\u001BA\u001BPS\u001BWKLabel\n" +
+                    "\u001B%0\u001BH0125\u001BV00137\u001B2D30,L,08,1,0\u001BDN^2$,^1$\n" +
+                    "\u001B%0\u001BH0065\u001BV00046\u001BP02\u001BRH0,SATO0.ttf,0,041,045,^1$\n" +
+                    "\u001B%0\u001BH0065\u001BV00338\u001BP02\u001BRH0,SATO0.ttf,0,041,045,LOT NO:\n" +
+                    "\u001B%0\u001BH0065\u001BV00409\u001BP02\u001BRH0,SATO0.ttf,0,041,045,Qty:\n" +
+                    "\u001B%0\u001BH0160\u001BV00479\u001BP02\u001BRH0,SATO0.ttf,0,041,045,SATO\n" +
+                    "\u001B%0\u001BH0227\u001BV00338\u001BP02\u001BRH0,SATO0.ttf,0,041,045,^3$\n" +
+                    "\u001B%0\u001BH0145\u001BV00409\u001BP02\u001BRH0,SATO0.ttf,0,041,045,50.00\n" +
+                    "\u001B%0\u001BH0253\u001BV00409\u001BP02\u001BRH0,SATO0.ttf,0,041,045,KG.\n" +
                     "\u001BQ1\n" +
                     "\u001BZ"
 

@@ -48,7 +48,7 @@ class Shared {
         }
 
         fun convertDate(date: Date): String {
-            val currentDate = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault())
+            val currentDate = SimpleDateFormat("dMMyy", Locale.getDefault())
             return currentDate.format(date)
         }
 
